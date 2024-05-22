@@ -1,5 +1,5 @@
 import React from "react";
-import './FilterButton.css'
+import "./FilterButton.css";
 
 interface FilterButtonProps {
   active: boolean;
