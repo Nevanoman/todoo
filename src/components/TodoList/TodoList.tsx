@@ -15,6 +15,7 @@ import {
   editTodo,
   reorderTodos,
 } from "../../redux/slices/todoSlice";
+
 import "./TodoList.css";
 
 const TodoList: React.FC = () => {
