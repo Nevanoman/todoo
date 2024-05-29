@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  DropResult,
-  DraggableProvided,
-  DroppableProvided,
-} from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { RootState, AppDispatch } from "../../redux/store";
 import {
   toggleTodo,
@@ -15,10 +8,10 @@ import {
   editTodo,
   reorderTodos,
 } from "../../redux/slices/todoSlice";
+import TodoItem from "./TodoItem/TodoItem";
+import TodoFilter from "./TodoFilter/TodoFilter";
 
-import "./TodoList.css";
-
-const TodoList: React.FC = () => {
+const TodoList = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);
   const filter = useSelector((state: RootState) => state.todos.filter);
   const dispatch = useDispatch<AppDispatch>();
@@ -50,14 +43,7 @@ const TodoList: React.FC = () => {
     }
   };
 
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "completed") {
-      return todo.completed;
-    } else if (filter === "active") {
-      return !todo.completed;
-    }
-    return true;
-  });
+  const filteredTodos = TodoFilter(todos, filter);
 
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -72,62 +58,25 @@ const TodoList: React.FC = () => {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="todos">
-        {(provided: DroppableProvided) => (
+        {(provided) => (
           <ul
             className="lists"
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
             {filteredTodos.map((todo, index) => (
-              <Draggable
+              <TodoItem
                 key={todo.id}
-                draggableId={todo.id.toString()}
+                todo={todo}
                 index={index}
-              >
-                {(provided: DraggableProvided) => (
-                  <li
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={todo.completed}
-                      onChange={() => handleToggle(todo.id)}
-                    />
-                    {editingId === todo.id ? (
-                      <>
-                        <input
-                          type="text"
-                          value={editText}
-                          onChange={handleEditChange}
-                        />
-                        <button onClick={() => handleEditSubmit(todo.id)}>
-                          Сохранить
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <span
-                          style={{
-                            textDecoration: todo.completed
-                              ? "line-through"
-                              : "none",
-                          }}
-                        >
-                          {todo.text}
-                        </span>
-                        <button onClick={() => handleEdit(todo.id, todo.text)}>
-                          Редактировать
-                        </button>
-                      </>
-                    )}
-                    <button onClick={() => handleDelete(todo.id)}>
-                      Удалить
-                    </button>
-                  </li>
-                )}
-              </Draggable>
+                handleToggle={handleToggle}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                editingId={editingId}
+                editText={editText}
+                handleEditChange={handleEditChange}
+                handleEditSubmit={handleEditSubmit}
+              />
             ))}
             {provided.placeholder}
           </ul>

@@ -1,10 +1,5 @@
-import React, { ReactNode } from "react";
 import "./Button.css";
-
-interface ButtonProps {
-  onClick?: () => void;
-  children: ReactNode;
-}
+import  {}
 
 const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
   return (
