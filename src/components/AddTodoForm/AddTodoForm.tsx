@@ -30,5 +30,3 @@ export const AddTodoForm: React.FC = () => {
     </Form>
   );
 };
-
-export default AddTodoForm;
