@@ -1,12 +1,8 @@
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import { Todo } from "../../../../types/types";
 
 type Filter = "all" | "completed" | "active";
 
-const TodoFilter = (todos: Todo[], filter: Filter): Todo[] => {
+export const TodoFilter = (todos: Todo[], filter: Filter): Todo[] => {
   return todos.filter((todo: Todo) => {
     if (filter === "completed") {
       return todo.completed;
@@ -16,5 +12,3 @@ const TodoFilter = (todos: Todo[], filter: Filter): Todo[] => {
     return true;
   });
 };
-
-export default TodoFilter;

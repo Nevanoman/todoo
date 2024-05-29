@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { RootState, AppDispatch } from "../../redux/store";
@@ -8,10 +8,9 @@ import {
   editTodo,
   reorderTodos,
 } from "../../redux/slices/todoSlice";
-import TodoItem from "./TodoItem/TodoItem";
-import TodoFilter from "./TodoFilter/TodoFilter";
+import { TodoItem, TodoFilter } from "./components";
 
-const TodoList = () => {
+export const TodoList = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);
   const filter = useSelector((state: RootState) => state.todos.filter);
   const dispatch = useDispatch<AppDispatch>();
@@ -85,5 +84,3 @@ const TodoList = () => {
     </DragDropContext>
   );
 };
-
-export default TodoList;

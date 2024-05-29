@@ -1,10 +1,8 @@
-import TodoList from "./components/TodoList/TodoList";
-import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
-import TodoFilter from "./components/TodoFilter/TodoFilter";
+import { TodoList, TodoFilter, AddTodoForm } from "./components";
 
 import "./App.css";
 
-function App() {
+export function App() {
   return (
     <div className="app">
       <h1 className="word">Заметки</h1>
@@ -14,5 +12,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

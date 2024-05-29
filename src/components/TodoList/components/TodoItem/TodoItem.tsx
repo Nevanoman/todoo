@@ -1,26 +1,8 @@
-import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import "./TodoItem.css";
+import { Props } from "../../../../types/types";
 
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
-
-interface Props {
-  todo: Todo;
-  index: number;
-  handleToggle: (id: number) => void;
-  handleDelete: (id: number) => void;
-  handleEdit: (id: number, text: string) => void;
-  editingId: number | null;
-  editText: string;
-  handleEditChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleEditSubmit: (id: number) => void;
-}
-
-const TodoItem: React.FC<Props> = ({
+export const TodoItem: React.FC<Props> = ({
   todo,
   index,
   handleToggle,
@@ -71,5 +53,3 @@ const TodoItem: React.FC<Props> = ({
     </Draggable>
   );
 };
-
-export default TodoItem;

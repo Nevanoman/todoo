@@ -1,7 +1,7 @@
 import "./Button.css";
-import  {}
+import  { ButtonProps } from '../../../../types/types'
 
-const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
+export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
   return (
     <button type="submit" className="form__button" onClick={onClick}>
       {children}
@@ -9,4 +9,4 @@ const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
   );
 };
 
-export default Button;
+

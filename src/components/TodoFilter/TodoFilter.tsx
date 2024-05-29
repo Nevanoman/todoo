@@ -1,11 +1,10 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../../redux/slices/todoSlice";
 import { RootState } from "../../redux/store";
-import FilterButton from "./FilterButton/FilterButton";
+import { FilterButton } from "./FilterButton";
 import "./TodoFilter.css";
 
-const TodoFilter: React.FC = () => {
+export const TodoFilter: React.FC = () => {
   const dispatch = useDispatch();
   const filter = useSelector((state: RootState) => state.todos.filter);
 
@@ -32,5 +31,3 @@ const TodoFilter: React.FC = () => {
     </div>
   );
 };
-
-export default TodoFilter;

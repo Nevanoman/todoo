@@ -2,11 +2,9 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addTodo } from "../../redux/slices/todoSlice";
-import Input from "./Input/Input";
-import Button from "./Button/Button";
-import Form from "./Form/Form";
+import { Button, Form, Input } from "./components";
 
-const AddTodoForm: React.FC = () => {
+export const AddTodoForm: React.FC = () => {
   const [text, setText] = useState("");
   const dispatch = useDispatch<AppDispatch>();
 

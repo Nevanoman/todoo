@@ -1,13 +1,7 @@
-import React from "react";
-import './FilterButton.css'
+import "./FilterButton.css";
+import { FilterButtonProps } from '../../../types/types'
 
-interface FilterButtonProps {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-const FilterButton: React.FC<FilterButtonProps> = ({
+export const FilterButton: React.FC<FilterButtonProps> = ({
   active,
   onClick,
   children,
@@ -21,5 +15,3 @@ const FilterButton: React.FC<FilterButtonProps> = ({
     </button>
   );
 };
-
-export default FilterButton;

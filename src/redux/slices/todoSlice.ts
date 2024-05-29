@@ -1,20 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
-
-interface TodosState {
-  todos: Todo[];
-  filter: "all" | "completed" | "active";
-}
+import { Todo, TodosState } from "../../types/types";
 
 const initialState: TodosState = {
   todos: [],
   filter: "all",
 };
-
 
 const todoSlice = createSlice({
   name: "todos",
@@ -53,8 +43,9 @@ const todoSlice = createSlice({
       state,
       action: PayloadAction<{ startIndex: number; endIndex: number }>
     ) => {
-      const [movedTodo] = state.todos.splice(action.payload.startIndex, 1);
-      state.todos.splice(action.payload.endIndex, 0, movedTodo);
+      const { startIndex, endIndex } = action.payload;
+      const [movedTodo] = state.todos.splice(startIndex, 1);
+      state.todos.splice(endIndex, 0, movedTodo);
     },
   },
 });
